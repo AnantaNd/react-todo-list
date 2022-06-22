@@ -42,7 +42,7 @@ function App() {
     let data = [...todo];
 
     //validate
-    if(formTodo.title === '' || formTodo.content === ''){
+    if(formTodo.title === ''){
       return false;
     }
     
