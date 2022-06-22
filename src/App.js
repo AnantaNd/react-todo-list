@@ -6,12 +6,7 @@ function App() {
 
   const [todo, setTodo] = React.useState(
     [
-      {
-        //hardcode todo
-        id: 1,
-        title: 'Learn React',
-        content: 'lorem ipsum',
-      }
+      
     ]
   )
 
@@ -28,8 +23,6 @@ function App() {
     }
   )
 
-  ;
-
   
   const handleChange = (event) => {
     let data = {...formTodo};
@@ -42,7 +35,7 @@ function App() {
     let data = [...todo];
 
     //validate
-    if(formTodo.title === ''){
+    if(formTodo.title === '' ){
       return false;
     }
     
@@ -82,8 +75,16 @@ const handleBtnDel = (id) => {
   setTodo(filter);
 }
 
-const handleComplate = (id) => {
-
+const handleComplate = (index) => {
+  setTodo(
+    todo.map((todo, i) => i === index ? 
+      {
+        ...todo,
+        status: !todo.status
+      }
+      : todo
+    )
+  )
 }
 
 return (
@@ -103,7 +104,9 @@ return (
             </button>
           </div>
         </form>
-        <ListTodo data={todo} handleDel={handleBtnDel} handleEdit={handleBtnEdit} handleComplate={handleComplate}/>
+        <ListTodo data={todo} handleDel={handleBtnDel} handleEdit={handleBtnEdit} handleComplate={handleComplate}
+          // style={{ textDecoration : this.status ? 'line-through' : ""}}
+        />
       </div>
     </div>
   );
